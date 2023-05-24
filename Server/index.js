@@ -7,11 +7,13 @@ const {connection} = require("./config/db");
 
 // all routes
 const {authRouter} = require('./routes/Auth.routes');
+const {OEM_SpecsRouter} = require("./routes/OEM_Specs.routes");
 
 app.use(express.json());
 app.use(cors());
 
 app.use("/auth", authRouter);
+app.use("/oem", OEM_SpecsRouter);
 
 
 
