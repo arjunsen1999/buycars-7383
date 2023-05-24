@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT;
 const cors = require('cors');
+const {connection} = require("./config/db");
 
 app.use(express.json());
 app.use(cors());
@@ -10,5 +11,6 @@ app.use(cors());
 
 
 app.listen(PORT, () =>{
+    connection();
     console.log({server : `http://localhost:${PORT}`});
 })
