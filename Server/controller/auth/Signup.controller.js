@@ -38,15 +38,15 @@ const SignupController = asyncHandler(async (req, res) => {
       status: "success",
       message: "Signup successful",
     };
-    res.status(201).json(response);
+    return res.status(201).json(response);
   } catch (error) {
     // Create error response
     const error_response = {
       status: "fail",
       message: "An error occurred",
     };
-    res.status(500).json(error_response);
     console.log(error);
+    return res.status(500).json(error_response);
   }
 });
 
