@@ -2,6 +2,7 @@ const { AuthModel } = require("../../models/Auth.model");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 const saltRounds = 6;
+const { validationResult } = require("express-validator");
 
 const SignupController = asyncHandler(async (req, res) => {
   try {
@@ -15,6 +16,14 @@ const SignupController = asyncHandler(async (req, res) => {
     // if role exists
     if (role) {
       reqData.role = role;
+    }
+
+    // If any error exists then throw Error
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res
+        .status(400)
+        .send({ status: "error", message: errors.array()[0].msg });
     }
 
     // Check if user with the same email already exists

@@ -2,10 +2,19 @@ const { AuthModel } = require("../../models/Auth.model");
 const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { validationResult } = require("express-validator");
 
 const LoginController = asyncHandler(async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    // If any error exists then throw Error
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res
+        .status(400)
+        .send({ status: "error", message: errors.array()[0].msg });
+    }
 
     // Check if user with the provided email exists
     const user = await AuthModel.findOne({ email });
@@ -32,6 +41,7 @@ const LoginController = asyncHandler(async (req, res) => {
       message: "Login successful",
       data: {
         token,
+        role: user.role,
         first_name: user.first_name,
         last_name: user.last_name,
       },
