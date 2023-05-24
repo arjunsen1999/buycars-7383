@@ -19,6 +19,24 @@ import { Link } from "react-router-dom";
 
 export default function SignupFormBox() {
   const [showPassword, setShowPassword] = useState(false);
+  const [formInput, setFormInput] = useState({
+    first_name : "",
+    last_name : "",
+    email : "",
+    password : ""
+  });
+  const handleChange = (event) =>{
+    const {name, value} = event.target;
+    setFormInput((prev) =>{
+      return {
+        ...prev,
+        [name] : value
+      }
+    })
+  }
+  const handleSubmit = () =>{
+    console.log(formInput)
+  }
   return (
     <>
       <Flex minH={"100vh"} align={"flex-start"} justify={"center"}>
@@ -33,22 +51,25 @@ export default function SignupFormBox() {
             <Box>
               <FormControl id="firstName" isRequired>
                 <FormLabel>First Name</FormLabel>
-                <Input type="text" placeholder="First Name" />
+                <Input type="text" value={formInput.first_name} name="first_name" placeholder="First Name" onChange={handleChange}/>
               </FormControl>
             </Box>
             <Box>
               <FormControl id="lastName" isRequired>
                 <FormLabel>Last Name</FormLabel>
-                <Input type="text" placeholder="Last Name" />
+                <Input type="text" value={formInput.last_name} name="last_name" placeholder="Last Name" onChange={handleChange}/>
               </FormControl>
             </Box>
           </HStack>
           <FormControl id="email" isRequired>
             <FormLabel>Email address</FormLabel>
             <Input
-              placeholder="fashion-deal@example.com"
+              placeholder="buycars@example.com"
               _placeholder={{ color: "gray.500" }}
               type="email"
+              name="email"
+              value={formInput.email}
+              onChange={handleChange}
             />
           </FormControl>
           <FormControl id="password" isRequired>
@@ -57,6 +78,9 @@ export default function SignupFormBox() {
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder={"Password"}
+                name="password"
+                value={formInput.password}
+                onChange={handleChange}
               />
               <InputRightElement h={"full"}>
                 <Button
@@ -78,6 +102,7 @@ export default function SignupFormBox() {
               _hover={{
                 bg : "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(32,43,209,1) 98%, rgba(72,11,228,1) 100%)"
               }}
+              onClick={handleSubmit}
             >
               Sign Up
             </Button>

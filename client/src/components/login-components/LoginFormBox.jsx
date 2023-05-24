@@ -16,9 +16,31 @@ import {
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import notification from "../../Toast";
+
+
 
 export default function LoginFormBox() {
   const [showPassword, setShowPassword] = useState(false);
+
+  const [formInput, setFormInput] = useState({
+    email : "",
+    password : ""
+  });
+  const handleChange = (event) =>{
+    const {name, value} = event.target;
+    setFormInput((prev) =>{
+      return {
+        ...prev,
+        [name] : value
+      }
+    })
+  }
+
+  const handleSubmit = () =>{
+    console.log(formInput);
+  }
+
   return (
     <>
       <Flex minH={"100vh"} align={"flex-start"} justify={"center"}>
@@ -33,9 +55,12 @@ export default function LoginFormBox() {
           <FormControl id="email" isRequired>
             <FormLabel>Email address</FormLabel>
             <Input
-              placeholder="fashion-deal@example.com"
+              placeholder="buycars@example.com"
               _placeholder={{ color: "gray.500" }}
               type="email"
+              name="email"
+              value={formInput.email}
+              onChange={handleChange}
             />
           </FormControl>
           <FormControl id="password" isRequired>
@@ -44,6 +69,9 @@ export default function LoginFormBox() {
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder={"Password"}
+                name="password"
+                value={formInput.password}
+                onChange={handleChange}
               />
               <InputRightElement h={"full"}>
                 <Button
@@ -75,6 +103,7 @@ export default function LoginFormBox() {
               _hover={{
                 bg: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(32,43,209,1) 98%, rgba(72,11,228,1) 100%)",
               }}
+              onClick={handleSubmit}
             >
               Login
             </Button>
