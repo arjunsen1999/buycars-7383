@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Flex,
@@ -15,28 +15,41 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { signupAction } from "../../redux/auth/auth.action";
+import { useDispatch, useSelector } from "react-redux";
+import { auth_isReset } from "../../redux/auth/auth.actionType";
 
 export default function SignupFormBox() {
+  const { isLoading, isSuccess } = useSelector((state) => state.Auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [formInput, setFormInput] = useState({
-    first_name : "",
-    last_name : "",
-    email : "",
-    password : ""
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
   });
-  const handleChange = (event) =>{
-    const {name, value} = event.target;
-    setFormInput((prev) =>{
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormInput((prev) => {
       return {
         ...prev,
-        [name] : value
-      }
-    })
-  }
-  const handleSubmit = () =>{
-    console.log(formInput)
-  }
+        [name]: value,
+      };
+    });
+  };
+  const handleSubmit = () => {
+    dispatch(signupAction(formInput));
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch({ type: auth_isReset });
+      navigate("/login");
+    }
+  }, [isSuccess]);
   return (
     <>
       <Flex minH={"100vh"} align={"flex-start"} justify={"center"}>
@@ -51,13 +64,25 @@ export default function SignupFormBox() {
             <Box>
               <FormControl id="firstName" isRequired>
                 <FormLabel>First Name</FormLabel>
-                <Input type="text" value={formInput.first_name} name="first_name" placeholder="First Name" onChange={handleChange}/>
+                <Input
+                  type="text"
+                  value={formInput.first_name}
+                  name="first_name"
+                  placeholder="First Name"
+                  onChange={handleChange}
+                />
               </FormControl>
             </Box>
             <Box>
               <FormControl id="lastName" isRequired>
                 <FormLabel>Last Name</FormLabel>
-                <Input type="text" value={formInput.last_name} name="last_name" placeholder="Last Name" onChange={handleChange}/>
+                <Input
+                  type="text"
+                  value={formInput.last_name}
+                  name="last_name"
+                  placeholder="Last Name"
+                  onChange={handleChange}
+                />
               </FormControl>
             </Box>
           </HStack>
@@ -100,7 +125,7 @@ export default function SignupFormBox() {
               color={"white"}
               w="full"
               _hover={{
-                bg : "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(32,43,209,1) 98%, rgba(72,11,228,1) 100%)"
+                bg: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(32,43,209,1) 98%, rgba(72,11,228,1) 100%)",
               }}
               onClick={handleSubmit}
             >

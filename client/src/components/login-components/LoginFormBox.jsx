@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Flex,
@@ -15,30 +15,41 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
-
-
+import { Link, useNavigate } from "react-router-dom";
+import { loginAction } from "../../redux/auth/auth.action";
+import { useDispatch, useSelector } from "react-redux";
+import { auth_isReset } from "../../redux/auth/auth.actionType";
 
 export default function LoginFormBox() {
+  const { isLoading, isSuccess } = useSelector((state) => state.Auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const [formInput, setFormInput] = useState({
-    email : "",
-    password : ""
+    email: "",
+    password: "",
   });
-  const handleChange = (event) =>{
-    const {name, value} = event.target;
-    setFormInput((prev) =>{
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormInput((prev) => {
       return {
         ...prev,
-        [name] : value
-      }
-    })
-  }
+        [name]: value,
+      };
+    });
+  };
 
-  const handleSubmit = () =>{
-    console.log(formInput);
-  }
+  const handleSubmit = () => {
+    dispatch(loginAction(formInput));
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch({ type: auth_isReset });
+      navigate("/");
+    }
+  }, [isSuccess]);
 
   return (
     <>

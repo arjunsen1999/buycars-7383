@@ -19,6 +19,7 @@ import {
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import {CiUser} from "react-icons/ci";
+import MenuComponents from "./MenuComponents";
 
 const Links = ["Dashboard", "Projects", "Team"];
 
@@ -68,45 +69,7 @@ export default function Navbar() {
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={"full"}
-                variant={"link"}
-                cursor={"pointer"}
-                minW={0}
-                _hover={{
-                    textDecoration : "none"
-                }}
-              >
-                <Box display={"flex"} flexDirection={"column"} alignItems={"center"} justifyContent={"center"}>
-                    <CiUser fontSize={"24px"}/>
-                    <Text>Profile</Text>
-                </Box>
-              </MenuButton>
-              <MenuList p={"10px"}>
-                <Heading as={"h2"} fontSize={"25px"}>
-                  Hello User
-                </Heading>
-                <Text mb="15px" fontSize={"13px"}>
-                  To access your Buycars account
-                </Text>
-                <Link to="/login">
-                  <Button
-                    bg="linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(32,43,209,1) 98%, rgba(72,11,228,1) 100%)"
-                    color={"white"}
-                    w="full"
-                    _hover={{
-                      bg: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(32,43,209,1) 98%, rgba(72,11,228,1) 100%)",
-                    }}
-                  >
-                    Login
-                  </Button>
-                </Link>
-                <MenuDivider />
-                <Link to="/dealer-signup"><MenuItem>Become a Dealer</MenuItem></Link>
-              </MenuList>
-            </Menu>
+           <MenuComponents />
           </Flex>
         </Flex>
 
