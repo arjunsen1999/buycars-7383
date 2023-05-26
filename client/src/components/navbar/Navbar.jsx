@@ -4,31 +4,23 @@ import {
   Flex,
   HStack,
   IconButton,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
   Stack,
-  Heading,
-  Text,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
-import {CiUser} from "react-icons/ci";
 import MenuComponents from "./MenuComponents";
 
-const Links = ["Dashboard", "Projects", "Team"];
+const Links = [{title : "Home", link : "/"}, { title : "Dealer Dashboard", link : "/dashboard"}];
 
-function NavLink({ children }) {
+function NavLink({ children, link }) {
   return (
     <>
       <Link
         px={2}
         py={1}
+        to={link}
         rounded={"md"}
         _hover={{
           textDecoration: "none",
@@ -47,7 +39,7 @@ export default function Navbar() {
 
   return (
     <>
-      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4} position={"sticky"} top="0px">
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -63,8 +55,8 @@ export default function Navbar() {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+              {Links.map((ele) => (
+                <NavLink link={ele.link} key={ele.link}>{ele.title}</NavLink>
               ))}
             </HStack>
           </HStack>
