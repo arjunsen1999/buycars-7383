@@ -7,9 +7,7 @@ const Get_Dealer_Cars_inventory_controller = asyncHandler(async (req, res) => {
     const { page = 1 } = req.query;
     const limit = 5;
     const cars = await Cars_inventory_Model.find({ dealerID })
-      .populate(["Marketplace_InventoryID", "OEM_SpecsID"])
-      .limit(limit)
-      .skip((page - 1) * limit);
+      .populate(["Marketplace_InventoryID", "OEM_SpecsID"]);
     // Create Response
     const response = {
       status: "success",

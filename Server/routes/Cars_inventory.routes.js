@@ -18,6 +18,13 @@ const {
 const {
   Get_Single_Cars_inventory_controller,
 } = require("../controller/Cars_inventory/Get_Single_Cars_inventory.controller");
+const {
+  Delete_Cars_inventory_controller,
+} = require("../controller/Cars_inventory/Delete_Cars_inventory.controller");
+
+const {
+  Update_Cars_inventory_controller,
+} = require("../controller/Cars_inventory/Update_Cars_inventory.controller");
 
 cars_inventory_Router
   .route("/dealer")
@@ -54,8 +61,12 @@ cars_inventory_Router
 cars_inventory_Router
   .route("/:id")
   .get(Get_Single_Cars_inventory_controller)
-  .patch(checkIsLoginMiddleware, checkIsDealerMiddlware)
-  .delete(checkIsLoginMiddleware, checkIsDealerMiddlware);
+  .patch(checkIsLoginMiddleware, checkIsDealerMiddlware, Update_Cars_inventory_controller)
+  .delete(
+    checkIsLoginMiddleware,
+    checkIsDealerMiddlware,
+    Delete_Cars_inventory_controller
+  );
 
 module.exports = {
   cars_inventory_Router,
