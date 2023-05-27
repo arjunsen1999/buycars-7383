@@ -2,7 +2,7 @@ import { Box, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import RemoveItemAlert from "./RemoveItemAlert";
 
-export default function CartItems() {
+export default function CartItems({Cars_inventoryID, _id}) {
   return (
     <>
       <Box w="100%" borderWidth="1px" minH="100px" mb="10px">
@@ -17,8 +17,9 @@ export default function CartItems() {
         >
           <Box>
             <Image
-              src="https://images.meesho.com/images/products/146519605/fsjdd_512.jpg"
+              src={Cars_inventoryID.image}
               w="100%"
+              maxH={"80px"}
             />
           </Box>
           <Box>
@@ -30,7 +31,7 @@ export default function CartItems() {
             >
               <Box w="80%">
                 <Text fontWeight={"bold"} noOfLines={1} fontSize={"17px"}>
-                  Title
+                  {Cars_inventoryID.title}
                 </Text>
               </Box>
               <Box
@@ -62,7 +63,7 @@ export default function CartItems() {
               <Text fontSize={"20px"}>₹311</Text>
             </Box>
             <Box>
-              <RemoveItemAlert />
+              <RemoveItemAlert id={_id} title={Cars_inventoryID.title}/>
             </Box>
           </Box>
         </Box>

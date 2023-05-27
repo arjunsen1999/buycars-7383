@@ -11,10 +11,25 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { CloseIcon } from "@chakra-ui/icons";
+import notification from "../../Toast";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { dashboard_loading } from "../../redux/dashboard/dashboard.actionType";
 
-export default function RemoveItemAlert() {
+export default function RemoveItemAlert({id, title}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
+  const dispatch = useDispatch();
+  const handleRemove = async () =>{
+    try {
+      const {data} = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/cart/${id}`);
+      notification("success", data.message);
+      dispatch({type : dashboard_loading})
+      onClose();
+    } catch (error) {
+      notification("error", error.response.data.message);
+    }
+  }
   return (
     <>
       <Button
@@ -40,7 +55,7 @@ export default function RemoveItemAlert() {
           <AlertDialogHeader>Remove Car from cart</AlertDialogHeader>
           <AlertDialogCloseButton />
           <AlertDialogBody>
-           Title
+           {title}
           </AlertDialogBody>
           <AlertDialogFooter>
             <Button
@@ -53,6 +68,7 @@ export default function RemoveItemAlert() {
             <Button
               colorScheme="teal"
               ml={3}
+              onClick={handleRemove}
             >
               REMOVE
             </Button>

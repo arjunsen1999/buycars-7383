@@ -4,10 +4,12 @@ const asyncHandler = require("express-async-handler");
 const Get_Carts_controller = asyncHandler(async (req, res) => {
   try {
     const userID = req.userID;
-    const carts = await Cart_Model.find({ userID });
+    const carts =  await Cart_Model.find({ userID }).populate(["Cars_inventoryID"]);
+
     // Create Response
     const response = {
       status: "success",
+      result : carts.length,
       data: carts,
     };
     // Send Response
