@@ -1,0 +1,1 @@
+export const dashboard_loading = 'dashboard/loading';

@@ -2,23 +2,23 @@ const mongoose = require("mongoose");
 const Marketplace_InventorySchema = new mongoose.Schema(
   {
     KMsOnOdometer: {
-      type: Number,
+      type: String,
       required: true,
     },
     MajorScratches: {
-      type: Boolean,
+      type: String,
       required: true,
     },
     OriginalPaint: {
-      type: Boolean,
+      type: String,
       required: true,
     },
     NumberOfAccidents: {
-      type: Number,
+      type: String,
       required: true,
     },
     NumberOfPreviousBuyers: {
-      type: Number,
+      type: String,
       required: true,
     },
     RegistrationPlace: {

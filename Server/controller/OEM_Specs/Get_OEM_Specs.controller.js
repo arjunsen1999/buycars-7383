@@ -4,8 +4,11 @@ const asyncHandler = require("express-async-handler");
 const Get_OEM_SpecsController = asyncHandler(async (req, res) => {
   try {
     const { search } = req.query;
+    const query = {
+      $or: [{ Model: { $regex: search, $options: "i" } }],
+    };
 
-    const OEM_Specs_Data = await OEM_Specs_Model.find();
+    const OEM_Specs_Data = await OEM_Specs_Model.find(query).limit(5);
 
     // Create Response
     const response = {
@@ -26,5 +29,5 @@ const Get_OEM_SpecsController = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
-    Get_OEM_SpecsController,
-}
+  Get_OEM_SpecsController,
+};

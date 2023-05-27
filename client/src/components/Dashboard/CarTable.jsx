@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Thead, Tbody, Tr, Th, TableContainer } from "@chakra-ui/react";
 import CarTableLists from "./CarTableLists";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function CarTable() {
+  const [carData, setCarData] = useState([]);
+  const { auth } = useSelector((state) => state.Auth);
+  const { loadingPage } = useSelector((state) => state.Dashboard);
+  const getData = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/cars/dealer`,
+        {
+          headers: { token: auth.token },
+        }
+      );
+      setCarData(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, [loadingPage]);
   return (
     <>
       <TableContainer>
@@ -30,11 +52,9 @@ export default function CarTable() {
             </Tr>
           </Thead>
           <Tbody>
-            <CarTableLists />
-            <CarTableLists />
-            <CarTableLists />
-            <CarTableLists />
-            <CarTableLists />
+            {carData.map((ele) => {
+              return <CarTableLists key={ele._id} {...ele} />;
+            })}
           </Tbody>
         </Table>
       </TableContainer>

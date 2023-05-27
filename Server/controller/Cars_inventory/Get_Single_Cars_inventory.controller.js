@@ -5,7 +5,10 @@ const Get_Single_Cars_inventory_controller = asyncHandler(async (req, res) => {
   try {
     const _id = req.params.id;
     // check is car exists
-    const car = await Cars_inventory_Model.findOne({ _id });
+    const car = await Cars_inventory_Model.findOne({ _id }).populate([
+      "Marketplace_InventoryID",
+      "OEM_SpecsID",
+    ]);
     if (!car) {
       return res
         .status(404)

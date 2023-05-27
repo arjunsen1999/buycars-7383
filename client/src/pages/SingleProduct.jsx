@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Container,
@@ -17,8 +17,46 @@ import {
 } from "@chakra-ui/react";
 
 import Navbar from "../components/navbar/Navbar";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import notification from "../Toast";
+import { useSelector } from "react-redux";
 
 export default function SingleProduct() {
+  const { auth } = useSelector((state) => state.Auth);
+  const { id } = useParams("id");
+  const [cardata, setcarData] = useState({});
+  const getData = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/cars/${id}`
+      );
+      setcarData(data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addToCart = async () => {
+    const payload = {
+      Cars_inventoryID: id,
+    };
+    try {
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/cart`,
+        payload,
+        {
+          headers: { token: auth.token },
+        }
+      );
+      notification("success", data.message);
+    } catch (error) {
+      notification("error", error.response.data.message);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <>
       <Navbar />
@@ -32,9 +70,7 @@ export default function SingleProduct() {
             <Image
               rounded={"md"}
               alt={"product image"}
-              src={
-                "https://images.unsplash.com/photo-1596516109370-29001ec8ec36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg5MzY2MzE&ixlib=rb-1.2.1&q=80&w=1080"
-              }
+              src={cardata.image}
               fit={"cover"}
               align={"center"}
               w={"100%"}
@@ -48,14 +84,14 @@ export default function SingleProduct() {
                 fontWeight={600}
                 fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
               >
-                Title
+                {cardata.title}
               </Heading>
               <Text
                 color={useColorModeValue("gray.900", "gray.400")}
                 fontWeight={300}
                 fontSize={"2xl"}
               >
-                LIST PRICE
+                {cardata?.OEM_SpecsID?.ListPrice}
               </Text>
             </Box>
 
@@ -69,12 +105,7 @@ export default function SingleProduct() {
               }
             >
               <Stack spacing={{ base: 4, sm: 6 }}>
-                <UnorderedList>
-                  <ListItem>Lorem ipsum dolor sit amet</ListItem>
-                  <ListItem>Consectetur adipiscing elit</ListItem>
-                  <ListItem>Integer molestie lorem at massa</ListItem>
-                  <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-                </UnorderedList>
+                <Text>{cardata.description}</Text>
               </Stack>
               <Box>
                 <Text
@@ -89,14 +120,44 @@ export default function SingleProduct() {
 
                 <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                   <List spacing={2}>
-                    <ListItem>Chronograph</ListItem>
-                    <ListItem>Master Chronometer Certified</ListItem>{" "}
-                    <ListItem>Tachymeter</ListItem>
+                    <ListItem>
+                      <Text as={"span"} fontWeight={"bold"}>
+                        Colors:
+                      </Text>{" "}
+                      {cardata?.OEM_SpecsID?.Colors?.join(",")}
+                    </ListItem>
+                    <ListItem>
+                      <Text as={"span"} fontWeight={"bold"}>
+                        Max Speed:
+                      </Text>{" "}
+                      {cardata.OEM_SpecsID?.MaxSpeed}
+                    </ListItem>
+                    <ListItem>
+                      <Text as={"span"} fontWeight={"bold"}>
+                        Mileage:
+                      </Text>{" "}
+                      {cardata.OEM_SpecsID?.Mileage}
+                    </ListItem>
                   </List>
                   <List spacing={2}>
-                    <ListItem>Anti‑magnetic</ListItem>
-                    <ListItem>Chronometer</ListItem>
-                    <ListItem>Small seconds</ListItem>
+                    <ListItem>
+                      <Text as={"span"} fontWeight={"bold"}>
+                        Model:
+                      </Text>{" "}
+                      {cardata.OEM_SpecsID?.Model}
+                    </ListItem>
+                    <ListItem>
+                      <Text as={"span"} fontWeight={"bold"}>
+                        Power:
+                      </Text>{" "}
+                      {cardata.OEM_SpecsID?.Power}
+                    </ListItem>
+                    <ListItem>
+                      <Text as={"span"} fontWeight={"bold"}>
+                        Year:
+                      </Text>{" "}
+                      {cardata.OEM_SpecsID?.Year}
+                    </ListItem>
                   </List>
                 </SimpleGrid>
               </Box>
@@ -116,38 +177,37 @@ export default function SingleProduct() {
                     <Text as={"span"} fontWeight={"bold"}>
                       KMS ON ODOMETER:
                     </Text>{" "}
-                    20 mm
+                    {cardata.Marketplace_InventoryID?.KMsOnOdometer}
                   </ListItem>
                   <ListItem>
                     <Text as={"span"} fontWeight={"bold"}>
                       MAJOR SCRATCHES:
                     </Text>{" "}
-                    leather strap
+                    {cardata.Marketplace_InventoryID?.MajorScratches}
                   </ListItem>
                   <ListItem>
                     <Text as={"span"} fontWeight={"bold"}>
                       ORIGINAL PAINT:
                     </Text>{" "}
-                    Steel
+                    {cardata.Marketplace_InventoryID?.OriginalPaint}
                   </ListItem>
                   <ListItem>
                     <Text as={"span"} fontWeight={"bold"}>
                       NUMBER OF ACCIDENTS:
                     </Text>{" "}
-                    42 mm
+                    {cardata.Marketplace_InventoryID?.NumberOfAccidents}
                   </ListItem>
                   <ListItem>
                     <Text as={"span"} fontWeight={"bold"}>
                       NUMBER OF PREVIOUS BUYERS:
                     </Text>{" "}
-                    Black
+                    {cardata.Marketplace_InventoryID?.NumberOfPreviousBuyers}
                   </ListItem>
                   <ListItem>
                     <Text as={"span"} fontWeight={"bold"}>
                       REGISTRATION PLACE:
                     </Text>{" "}
-                    Domed, scratch‑resistant sapphire crystal with
-                    anti‑reflective treatment inside
+                    {cardata.Marketplace_InventoryID?.RegistrationPlace}
                   </ListItem>
                 </List>
               </Box>
@@ -166,6 +226,7 @@ export default function SingleProduct() {
                 transform: "translateY(2px)",
                 boxShadow: "lg",
               }}
+              onClick={addToCart}
             >
               Add to cart
             </Button>

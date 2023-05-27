@@ -6,15 +6,15 @@ const checkIsLoginMiddleware = asyncHandler(async (req, res, next) => {
   try {
     let token = req.headers.token || false;
     // if token is not exists
+    
     if (!token) {
       return res
         .status(404)
         .send({ status: "Not found!", message: "you have to login first" });
     }
     // decoded token
-    let { _id } = jwt.verify(token, process.env.SECRET_KEY);
-
-    req.userID = _id;
+    let {userId} = jwt.verify(token, process.env.SECRET_KEY);
+    req.userID = userId;
     next();
   } catch (error) {
     // Create error response
