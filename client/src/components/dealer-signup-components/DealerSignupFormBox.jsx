@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Flex,
@@ -15,9 +15,15 @@ import {
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signupAction } from "../../redux/auth/auth.action";
+import { auth_isReset } from "../../redux/auth/auth.actionType";
 
 export default function DealerSignupFormBox() {
+  const { isLoading, isSuccess } = useSelector((state) => state.Auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [formInput, setFormInput] = useState({
     first_name: "",
@@ -36,8 +42,14 @@ export default function DealerSignupFormBox() {
     });
   };
   const handleSubmit = () => {
-    console.log(formInput);
+    dispatch(signupAction(formInput));
   };
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch({ type: auth_isReset });
+      navigate("/login");
+    }
+  }, [isSuccess]);
   return (
     <>
       <Flex minH={"100vh"} align={"flex-start"} justify={"center"}>

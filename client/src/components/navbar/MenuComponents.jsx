@@ -12,17 +12,19 @@ import {
 import React from "react";
 import { CiUser } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth_logout } from "../../redux/auth/auth.actionType";
 import notification from "../../Toast";
 
 export default function MenuComponents() {
   const { auth } = useSelector((state) => state.Auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch({ type: auth_logout });
     notification("success", "Successfully Logout");
+    navigate("/");
   };
   return (
     <>

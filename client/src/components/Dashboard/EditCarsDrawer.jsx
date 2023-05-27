@@ -39,7 +39,7 @@ export default function EditCarsDrawer() {
             <Button variant="outline" mr={3} onClick={onClose}>
               Cancel
             </Button>
-            <Button colorScheme="blue">Save</Button>
+            <Button colorScheme="teal">Save</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

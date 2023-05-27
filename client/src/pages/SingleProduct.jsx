@@ -6,7 +6,6 @@ import {
   Text,
   Image,
   Flex,
-  VStack,
   Button,
   Heading,
   SimpleGrid,

@@ -17,7 +17,7 @@ export default function AllRoutes() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/dealer-signup" element={<DealerSignup />} />
         <Route path="/dashboard" element={<DealerDashboard />} />
-        <Route path="/product/:id" element={<SingleProduct />} />
+        <Route path="/car/:id" element={<SingleProduct />} />
         <Route path="/cart" element = {<Cart />} />
       </Routes>
     </>

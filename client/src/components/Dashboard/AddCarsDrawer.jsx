@@ -1,4 +1,12 @@
-import { Box, Button, Image, Input, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Image,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import React from "react";
 import {
   Drawer,
@@ -10,13 +18,14 @@ import {
   DrawerCloseButton,
 } from "@chakra-ui/react";
 
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from "@chakra-ui/react";
 import InputBox from "./InputBox";
+
+import {
+  AutoComplete,
+  AutoCompleteInput,
+  AutoCompleteItem,
+  AutoCompleteList,
+} from "@choc-ui/chakra-autocomplete";
 
 export default function AddCarsDrawer() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -37,6 +46,7 @@ export default function AddCarsDrawer() {
           placement="right"
           onClose={onClose}
           finalFocusRef={btnRef}
+          size={"sm"}
         >
           <DrawerOverlay />
           <DrawerContent>
@@ -64,8 +74,70 @@ export default function AddCarsDrawer() {
 
               <form action="">
                 <InputBox require={true} title={"Title"} name={"title"} />
-                <InputBox require={true} title={"Description"} name={"description"} />
-   
+                <InputBox
+                  require={true}
+                  title={"Description"}
+                  name={"description"}
+                />
+
+                {/* /////////////////////////////////////// */}
+                <FormControl isRequired mb="15px">
+                  <FormLabel>OEM Specs</FormLabel>
+                  <AutoComplete rollNavigation>
+                    <AutoCompleteInput
+                      variant="filled"
+                      placeholder="Search..."
+                      id="assign_to"
+                      autoFocus
+                      // onChange={searchUser}
+                    />
+                    <AutoCompleteList>
+                      {["people"].map((person, oid) => (
+                        <AutoCompleteItem
+                          key={`option-${oid}`}
+                          value={""}
+                          textTransform="capitalize"
+                          align="center"
+                        >
+                          <Text ml="4"></Text>
+                        </AutoCompleteItem>
+                      ))}
+                    </AutoCompleteList>
+                  </AutoComplete>
+                </FormControl>
+
+                {/* /////////////////////////////////////// */}
+
+                <InputBox
+                  require={true}
+                  title={"KMS ON ODOMETER"}
+                  name={"title"}
+                />
+                <InputBox
+                  require={true}
+                  title={"MAJOR SCRATCHES"}
+                  name={"MAJOR SCRATCHES"}
+                />
+                <InputBox
+                  require={true}
+                  title={"ORIGINAL PAINT"}
+                  name={"ORIGINAL PAINT"}
+                />
+                <InputBox
+                  require={true}
+                  title={"NUMBER OF ACCIDENTS"}
+                  name={"NUMBER OF ACCIDENTS"}
+                />
+                <InputBox
+                  require={true}
+                  title={"NUMBER OF PREVIOUS BUYERS"}
+                  name={"NUMBER OF PREVIOUS BUYERS"}
+                />
+                <InputBox
+                  require={true}
+                  title={"REGISTRATION PLACE"}
+                  name={"REGISTRATION PLACE"}
+                />
               </form>
             </DrawerBody>
 
