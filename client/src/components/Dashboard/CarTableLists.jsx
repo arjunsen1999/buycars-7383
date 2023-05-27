@@ -9,6 +9,7 @@ export default function CarTableLists({
   description,
   OEM_SpecsID,
   Marketplace_InventoryID,
+  _id
 }) {
   return (
     <>
@@ -32,10 +33,10 @@ export default function CarTableLists({
         <Td>{Marketplace_InventoryID.NumberOfPreviousBuyers}</Td>
         <Td>{Marketplace_InventoryID.RegistrationPlace}</Td>
         <Td>
-          <EditCarsDrawer />
+          <EditCarsDrawer id={_id}/>
         </Td>
         <Td>
-          <DeleteCarDialog />
+          <DeleteCarDialog id={_id}/>
         </Td>
       </Tr>
     </>

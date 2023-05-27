@@ -15,7 +15,7 @@ export default function DealerDashboard() {
           <CarTable />
         </Box>
         <Box>
-          <PagButton />
+          {/* <PagButton /> */}
         </Box>
       </Box>
     </>

@@ -19,6 +19,7 @@ export default function Cart() {
           headers: { token: auth.token },
         }
       );
+      // console.log(data.data)
       setCount(data.result);
       setcarData(data.data);
     } catch (error) {

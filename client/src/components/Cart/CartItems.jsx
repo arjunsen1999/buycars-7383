@@ -17,7 +17,7 @@ export default function CartItems({Cars_inventoryID, _id}) {
         >
           <Box>
             <Image
-              src={Cars_inventoryID.image}
+              src={Cars_inventoryID?.image}
               w="100%"
               maxH={"80px"}
             />
@@ -31,7 +31,7 @@ export default function CartItems({Cars_inventoryID, _id}) {
             >
               <Box w="80%">
                 <Text fontWeight={"bold"} noOfLines={1} fontSize={"17px"}>
-                  {Cars_inventoryID.title}
+                  {Cars_inventoryID?.title}
                 </Text>
               </Box>
               <Box
@@ -63,7 +63,7 @@ export default function CartItems({Cars_inventoryID, _id}) {
               <Text fontSize={"20px"}>₹311</Text>
             </Box>
             <Box>
-              <RemoveItemAlert id={_id} title={Cars_inventoryID.title}/>
+              <RemoveItemAlert id={_id} title={Cars_inventoryID?.title}/>
             </Box>
           </Box>
         </Box>

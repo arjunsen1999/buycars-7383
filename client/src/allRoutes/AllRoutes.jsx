@@ -7,6 +7,8 @@ import DealerSignup from "../pages/DealerSignup";
 import DealerDashboard from "../pages/DealerDashboard";
 import SingleProduct from "../pages/SingleProduct";
 import Cart from "../pages/Cart";
+import OnlyDealer from "../hoc/OnlyDealer";
+import OnlyLoginUser from "../hoc/OnlyLoginUser";
 
 export default function AllRoutes() {
   return (
@@ -16,9 +18,23 @@ export default function AllRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/dealer-signup" element={<DealerSignup />} />
-        <Route path="/dashboard" element={<DealerDashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <OnlyDealer>
+              <DealerDashboard />
+            </OnlyDealer>
+          }
+        />
         <Route path="/car/:id" element={<SingleProduct />} />
-        <Route path="/cart" element = {<Cart />} />
+        <Route
+          path="/cart"
+          element={
+            <OnlyLoginUser>
+              <Cart />
+            </OnlyLoginUser>
+          }
+        />
       </Routes>
     </>
   );
