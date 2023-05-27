@@ -55,12 +55,12 @@ export default function CartItems({Cars_inventoryID, _id}) {
               mb="10px"
             >
               <Text fontSize={"20px"} mr="20px">
-                Model: M
+                Model: {Cars_inventoryID?.OEM_SpecsID?.Model}
               </Text>
-              <Text fontSize={"20px"}>Year: 1</Text>
+              <Text fontSize={"20px"}>Year: {Cars_inventoryID?.OEM_SpecsID?.Year}</Text>
             </Box>
             <Box mb="10px">
-              <Text fontSize={"20px"}>₹311</Text>
+              <Text fontSize={"20px"}>{Cars_inventoryID?.OEM_SpecsID?.ListPrice}</Text>
             </Box>
             <Box>
               <RemoveItemAlert id={_id} title={Cars_inventoryID?.title}/>

@@ -8,7 +8,7 @@ export default function PriceDetails() {
             <Text fontSize={"22px"} color={"#333333"} fontWeight={"bolder"} mb="20px">Price Details</Text>
             <Box borderBottom={"1px solid black"}>
              <Box display={"flex"} alignItems={"center"} mb="15px" justifyContent={"space-between"}>
-              <Text fontSize={"18px"}>Total Product Price</Text>
+              <Text fontSize={"18px"}>Total Cars Price</Text>
               <Text fontSize={"18px"}>&#8377;564</Text>
              </Box>
 

@@ -4,12 +4,21 @@ const asyncHandler = require("express-async-handler");
 const Get_Carts_controller = asyncHandler(async (req, res) => {
   try {
     const userID = req.userID;
-    const carts =  await Cart_Model.find({ userID }).populate(["Cars_inventoryID"]);
+    const carts =  await Cart_Model.find({ userID }).populate({path : "Cars_inventoryID", populate : {
+      path : 'OEM_SpecsID',
+    }});
+
+    // let total = 0;
+    // carts.forEach((ele) =>{
+    //   const num = ele.Cars_inventoryID.OEM_SpecsID.ListPrice.replace();
+    //   total += ;
+    // })
 
     // Create Response
     const response = {
       status: "success",
       result : carts.length,
+      // total : total,
       data: carts,
     };
     // Send Response
