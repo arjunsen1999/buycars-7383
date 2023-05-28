@@ -7,12 +7,13 @@ import {
   useColorModeValue,
   Stack,
   Text,
+  Image,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import MenuComponents from "./MenuComponents";
 import { useSelector } from "react-redux";
-import {BsCartCheck} from "react-icons/bs"
+import { BsCartCheck } from "react-icons/bs";
 
 function NavLink({ children, link }) {
   return (
@@ -56,7 +57,7 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box>Logo</Box>
+            <Image src="./buycarteal.png" w="120px" h="auto"/>
             <HStack
               as={"nav"}
               spacing={4}
@@ -72,7 +73,7 @@ export default function Navbar() {
             </HStack>
           </HStack>
           <Flex alignItems={"center"} gap="25px">
-          <Link to={"/cart"}>
+            <Link to={"/cart"}>
               <Flex
                 align={"center"}
                 justify={"center"}
