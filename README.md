@@ -1,5 +1,5 @@
 # Welcome to BuyCars
-<h3>BuyCars is an online travel company. It provides online travel services including airline tickets, hotel reservations, rail, and bus tickets.</h3>
+<h3>Dealers sell second-hand cars on this website, and customers can buy them here. There is no brokerage charge on this website, and the selling and purchasing of cars happen directly between dealers and customers.</h3>
 
 <br/>
 
@@ -62,11 +62,11 @@
 
 ## Dealer's Signup Page :
 
-<h3>For signup, user need to fill required details. If user is already exists then it will show you an error. So you can't register again with the same email. </h3>
+<h3>For signup, dealers need to fill required details. If user is already exists then it will show you an error. So you can't register again with the same email. </h3>
 <br/>
 
 <div align="center">
-<img src="https://github.com/arjunsen1999/buycars-7383/assets/104183845/a4e0d5a2-cd66-4466-8958-d73f6359bdd3.jpg" alt ="signup page" />
+<img width="80%" src="https://github.com/arjunsen1999/buycars-7383/assets/104183845/a4e0d5a2-cd66-4466-8958-d73f6359bdd3.jpg" alt ="signup page" />
 </div>
 
 <br/>
@@ -75,13 +75,13 @@
 
 ## Login Page :
 
-<h3>Users can login using their input credentials which provided while signup.</h3>
+<h3>Customers can login using their input credentials which provided while signup.</h3>
 <br/>
 
 <table align="center">
   <tr>
     <td>
-      <img height="400px" src="https://github.com/arjunsen1999/buycars-7383/assets/104183845/72bb7116-5bb4-4660-baa9-8710d4401482.jpg" alt="login page 1">
+      <img width="80%" src="https://github.com/arjunsen1999/buycars-7383/assets/104183845/72bb7116-5bb4-4660-baa9-8710d4401482.jpg" alt="login page 1">
     </td>
   </tr>
 </table>
@@ -92,13 +92,13 @@
 
 ## Dashboard Page :
 
-<h3>Here users can book their flight tickets.</h3>
+<h3>Here Dealers can enter the required details and specifications of the car and can also delete the details of previously added cars.</h3>
 <br/>
 
 <table>
 <tr>
 <td>
-  <img src="https://github.com/arjunsen1999/buycars-7383/assets/104183845/154f980c-6622-4807-8567-c5a16f360179" alt="Trains page 1"/>   
+  <img width="80%" src="https://github.com/arjunsen1999/buycars-7383/assets/104183845/154f980c-6622-4807-8567-c5a16f360179" alt="dashboard page "/>   
 </td>
 </tr>
 </table>
@@ -106,29 +106,15 @@
 
 
 
-## Hotels Page :
-
-<h3>Here users can book their rooms in hotels .</h3>
-<br/>
-
-<div align="center">
-  <img width="50%" src="https://user-images.githubusercontent.com/107460451/213929806-c9db206b-0855-475f-a217-d8f524615975.jpg" alt="Hotels page">
-</div>
-
-<!-- ![HotelPage](https://user-images.githubusercontent.com/107460451/213929806-c9db206b-0855-475f-a217-d8f524615975.jpg) -->
-<br/>
-
-
-
 ## Car Details Page :
 
-<h3>Here users can book their train tickets .</h3>
+<h3>Here Customers can see all the specifications of the cars avaibale on the website .</h3>
 <br/>
 
 <table>
 <tr>
 <td>
-  <img src="https://github.com/arjunsen1999/buycars-7383/assets/104183845/06aaa7c7-8c31-4cf4-94c5-1cf92f7fe205.jpg" alt="Trains page 1"/> 
+  <img width="80%" src="https://github.com/arjunsen1999/buycars-7383/assets/104183845/06aaa7c7-8c31-4cf4-94c5-1cf92f7fe205.jpg" alt="carDetails"/> 
 
 </td>
 
@@ -142,30 +128,17 @@
 
 ## Cart Page :
 
-<h3>Here users can book their bus tickets .</h3>
+<h3>Here customers can add the cars to their cart.</h3>
 <br/>
 
 <div align="center">
-  <img width="50%" src="https://github.com/arjunsen1999/buycars-7383/assets/104183845/f7ab789d-6a14-4726-87cf-4ee99febc555.jpg" alt="Buses page">
+  <img width="80%" src="https://github.com/arjunsen1999/buycars-7383/assets/104183845/f7ab789d-6a14-4726-87cf-4ee99febc555.jpg" alt="cartPage">
 
 </div>
 
 <br/>
 
 
-
-## Our Learnings
-On this journey we faced many issues, but we keep motivated each other with patience. 
-
-- We all learned how to read and understand the code of other team members.
-
-- We learned how to write more efficient and clean code.
-
-- Even though  We also learned how to plan a project and how to execute it step by step.
-
-- By this Project we have learned how to collaborate and communicate with team effectively and improving the productivity.
-
-- We also got a glimpse of using GitHub for the version control.
 
 Source Code(GitHub link):- https://github.com/arjunsen1999/buycars-7383
 
