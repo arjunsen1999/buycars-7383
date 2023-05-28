@@ -48,6 +48,7 @@ export default function Card({image, title, description, _id}) {
             src={image}
             objectFit="cover"
             w="100%"
+            h="200px"
           />
           <Box p={{ base: 3, sm: 5 }}>
             <Box mb={6}>
